@@ -1,4 +1,4 @@
 homepage: "https://www.ayko.com"
 versions:
-  - sha: b79c33e94d15c87657c172de6700023b9eec4cdf
+  - sha: 43066929269b4b200eb5599e1bbe94df04737b61
     changeNotes: Initial release.
