@@ -1,7 +1,36 @@
+<!-- Reload methond (old) -->
 <script>
     jQuery('body').on('amcookie_allow amcookie_save', function() {
         setTimeout( function() {
             location.reload();
+        }, 750 );
+    });
+</script>
+
+
+<!-- Consent selection method -->
+<script>
+    jQuery('body').on('amcookie_allow amcookie_save', function() {
+        setTimeout( function() {
+
+            if (!jQuery.cookie('amcookie_set')) {
+                var cookies = jQuery.cookie('amcookie_allowed');
+                cookies = (cookies == "0") ? "1,2,3" : cookies;
+                cookies = cookies.split(',');
+
+                var preferences = {
+                    ad_storage: cookies.includes("2") ? 'granted' : 'denied',
+                    analytics_storage: cookies.includes("3") ? 'granted' : 'denied',
+                    functionality_storage: cookies.includes("1") ? 'granted' : 'denied',
+                    personalization_storage: cookies.includes("2") ? 'granted' : 'denied',
+                    security_storage: 'granted'
+                };
+
+                console.log(cookies, preferences);
+                onConsentChange(preferences);
+                jQuery.cookie('amcookie_set', true);
+            };
+
         }, 750 );
     });
 </script>
